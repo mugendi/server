@@ -14,17 +14,10 @@ module.exports = function(opt) {
 
   const validHosts = opt.domain ? [opt.domain] : undefined;
   const myTldjs = tldjs.fromUserSettings({ validHosts });
-
 //   const landingPage = opt.landing || "https://localtunnel.github.io/www/";
 
   function GetClientIdFromHostname(hostname) {
-
-    var hasSubDomains = myTldjs.getSubdomain(opt.domain);
-
-    console.log(opt.domain, hostname,  {hasSubDomains}, myTldjs.getSubdomain(hostname));
-
-    var arr = myTldjs.getSubdomain(hostname).split('.')
-    return arr.length>1 ? arr[0] : null;
+    return myTldjs.getSubdomain(hostname);
   }
 
   const manager = new ClientManager(opt);
@@ -33,8 +26,6 @@ module.exports = function(opt) {
 
   const app = new Koa();
   const router = new Router();
-
-  console.log(opt);
 
   router.get("/api/status", async (ctx, next) => {
     const stats = manager.stats;
