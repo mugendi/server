@@ -120,10 +120,12 @@ module.exports = function(opt) {
 
   server.on("request", (req, res) => {
 
-    console.log({req, res});
-    
+    // console.log({req, res});
+
     // without a hostname, we won't know who the request is for
     const hostname = req.headers.host;
+    console.log({hostname});
+
     if (!hostname) {
       res.statusCode = 400;
       res.end("Host header is required");
@@ -131,6 +133,8 @@ module.exports = function(opt) {
     }
 
     const clientId = GetClientIdFromHostname(hostname);
+
+    console.log({clientId});
     if (!clientId) {
       appCallback(req, res);
       return;
