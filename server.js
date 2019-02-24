@@ -14,10 +14,12 @@ module.exports = function(opt) {
 
   const validHosts = opt.domain ? [opt.domain] : undefined;
   const myTldjs = tldjs.fromUserSettings({ validHosts });
+
 //   const landingPage = opt.landing || "https://localtunnel.github.io/www/";
 
   function GetClientIdFromHostname(hostname) {
-    return myTldjs.getSubdomain(hostname);
+    var arr = myTldjs.getSubdomain(hostname).split('.')
+    return arr.length>1 ? arr[0] : null;
   }
 
   const manager = new ClientManager(opt);
