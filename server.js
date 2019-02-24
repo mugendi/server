@@ -21,7 +21,7 @@ module.exports = function(opt) {
 
     var hasSubDomains = myTldjs.getSubdomain(opt.domain);
 
-    console.log({hasSubDomains});
+    console.log(opt.domain, hostname,  {hasSubDomains});
 
     var arr = myTldjs.getSubdomain(hostname).split('.')
     return arr.length>1 ? arr[0] : null;
