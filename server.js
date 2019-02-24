@@ -29,6 +29,8 @@ module.exports = function(opt) {
   const app = new Koa();
   const router = new Router();
 
+  console.log(opt);
+
   router.get("/api/status", async (ctx, next) => {
     const stats = manager.stats;
     ctx.body = {
