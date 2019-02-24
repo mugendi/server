@@ -18,6 +18,11 @@ module.exports = function(opt) {
 //   const landingPage = opt.landing || "https://localtunnel.github.io/www/";
 
   function GetClientIdFromHostname(hostname) {
+
+    var hasSubDomains = myTldjs.getSubdomain(opt.domain);
+
+    console.log(hasSubDomains);
+
     var arr = myTldjs.getSubdomain(hostname).split('.')
     return arr.length>1 ? arr[0] : null;
   }
